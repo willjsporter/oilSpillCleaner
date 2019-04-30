@@ -1,14 +1,15 @@
-import org.javatuples.Pair;
+import utils.Coordinates;
 
 import java.util.List;
 
 public class Cleaner {
 
     private Area area;
-    private Pair<Integer, Integer> position;
+    private Coordinates position;
+    private List<Coordinates> directions;
 
 
-    public Cleaner(Area area, Pair<Integer, Integer> position, List<Pair<Integer, Integer>> directions) {
+    public Cleaner(Area area, Coordinates position, List<Coordinates> directions) {
         this.area = area;
         this.position = position;
         this.directions = directions;
@@ -22,13 +23,12 @@ public class Cleaner {
         return area;
     }
 
-    public Pair<Integer, Integer> getPosition() {
+    public Coordinates getPosition() {
         return position;
     }
 
-    public List<Pair<Integer, Integer>> getDirections() {
+    public List<Coordinates> getDirections() {
         return directions;
     }
 
-    private List<Pair<Integer, Integer>> directions;
 }

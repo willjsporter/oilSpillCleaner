@@ -1,5 +1,5 @@
-import org.javatuples.Pair;
 import org.junit.Test;
+import utils.Coordinates;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ public class CleanerTest {
     @Test
     public void cleanerShouldStayStationaryIfNoDirectionsAreGiven() {
         var area = new Area();
-        var startingPoint = Pair.with(0,0);
-        var directions = List.of();
+        var startingPoint = new Coordinates(0, 0);
         Cleaner cleaner = new Cleaner(area, startingPoint, List.of() );
+
         cleaner.move();
         assertThat(cleaner.getPosition(), is(startingPoint));
     }

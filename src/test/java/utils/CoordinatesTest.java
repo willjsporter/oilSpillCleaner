@@ -13,8 +13,9 @@ public class CoordinatesTest {
         Coordinates coordinates1 = new Coordinates(1,0);
         Coordinates coordinates2 = new Coordinates(2,4);
 
-        assertThat(coordinates1.add(coordinates2).getX(), is(3));
-        assertThat(coordinates1.add(coordinates2).getY(), is(4));
+        coordinates1.add(coordinates2);
+
+        assertThat(coordinates1, is(new Coordinates(3,4)));
     }
 
 }
