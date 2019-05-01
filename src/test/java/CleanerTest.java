@@ -4,6 +4,7 @@ import utils.Coordinates;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 
@@ -17,5 +18,16 @@ public class CleanerTest {
 
         cleaner.move();
         assertThat(cleaner.getPosition(), is(startingPoint));
+    }
+
+    @Test
+    public void cleanerShouldChangePositionIfOneDirectionInputIsGiven() {
+        var area = new Area();
+        var startingPoint = new Coordinates(0, 0);
+        var directions = List.of(new Coordinates(1, 0));
+        Cleaner cleaner = new Cleaner(area, startingPoint, directions);
+
+        cleaner.move();
+        assertThat(cleaner.getPosition(), equalTo(new Coordinates(1, 0)));
     }
 }

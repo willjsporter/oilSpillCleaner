@@ -16,7 +16,9 @@ public class Cleaner {
     }
 
     public void move() {
-
+        if(!directions.isEmpty()) {
+            position.add(directions.get(0));
+        }
     }
 
     public Area getArea() {
