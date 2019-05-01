@@ -1,6 +1,6 @@
-#Oil Spill Cleaner
+# Oil Spill Cleaner
 
-##What am I?
+## What am I?
 This is a project to program a simple robot that, given an area and a starting point within that area can navigate to specified positions in order to clean up oil spills.
 
 The user specifies input by sending data as JSON to an endpoint from where the instructions can be processed.
@@ -9,7 +9,7 @@ When it has finished running it will tell the user where it has ended up (and th
 
 The project is only to deal with the navigation side rather than the cleaning side.
 
-##How to run me
+## How to run me
 
 To use the cleaner it is necessary to run this application by inputting 
 `mvn spring-boot:run` 
@@ -42,11 +42,11 @@ The output for this example would be as follows:
 }
 ```
 
-##How to run the tests
+## How to run the tests
 
 //:TODO
 
-##User Stories
+## User Stories
 
 The user requirements detailed when asked to build this program for the cleaner are summarised below:
 
