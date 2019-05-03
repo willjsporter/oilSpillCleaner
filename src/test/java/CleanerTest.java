@@ -8,6 +8,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.fail;
 
 
 public class CleanerTest {
@@ -79,12 +80,18 @@ public class CleanerTest {
         assertThat(cleaner.getTotalSpillsCleaned(), equalTo(1));
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void shouldThrowErrorIfCleanerGoesOutOfArea() throws Exception {
         var directions = new ArrayList<Coordinates>(List.of(new Coordinates(-1,1)));
         Cleaner cleaner = new Cleaner(area, new Coordinates(0,0), directions);
 
-        cleaner.nextMove();
+        try {
+            cleaner.nextMove();
+            fail("cleaner.nextMove() should have thrown an error but did not");
+        } catch (Exception e) {
+            String expectedError = "cleaner is out of bounds at position (-1,1)";
+            assertThat(e.getMessage(), is(expectedError));
+        }
 
     }
 

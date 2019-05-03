@@ -25,6 +25,10 @@ public class Coordinates {
         return y;
     }
 
+    public String printCoordinates() {
+        return "(" + x + "," + y + ")";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

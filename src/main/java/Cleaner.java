@@ -33,7 +33,7 @@ public class Cleaner {
             position.getX() > area.getxLength() - 1 ||
             position.getY() < 0                     ||
             position.getY() > area.getxLength() - 1 ) {
-            throw new Exception();
+            throw new Exception("cleaner is out of bounds at position " + position.printCoordinates());
         }
     }
 
