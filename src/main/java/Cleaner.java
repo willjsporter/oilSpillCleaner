@@ -19,11 +19,21 @@ public class Cleaner {
         this.totalSpillsCleaned = 0;
     }
 
-    public void nextMove() {
+    public void nextMove() throws Exception {
         if(!directions.isEmpty()) {
             position.moveBy(directions.get(0));
+            checkValidPosition();
             directions.remove(0);
             attemptToClean();
+        }
+    }
+
+    private void checkValidPosition ()throws Exception {
+        if( position.getX() < 0                     ||
+            position.getX() > area.getxLength() - 1 ||
+            position.getY() < 0                     ||
+            position.getY() > area.getxLength() - 1 ) {
+            throw new Exception();
         }
     }
 
