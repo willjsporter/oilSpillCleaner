@@ -63,5 +63,22 @@ public class CleanerTest {
         assertThat(cleaner.getTotalSpillsCleaned(), equalTo(1));
     }
 
+    @Test
+    public void cleanerShouldOnlyCountEachPatchCleanedOnce() {
+        Area area = new Area(
+                5,
+                5,
+                List.of(new Coordinates(1,1), new Coordinates(4,4))
+        );
+        var directions = new ArrayList<Coordinates>(List.of(new Coordinates(1,1), new Coordinates(0,0)));
+        Cleaner cleaner = new Cleaner(area, new Coordinates(0,0), directions);
+
+        cleaner.nextMove();
+        assertThat(cleaner.getTotalSpillsCleaned(), equalTo(1));
+
+        cleaner.nextMove();
+        assertThat(cleaner.getTotalSpillsCleaned(), equalTo(1));
+    }
+
 
 }

@@ -23,10 +23,7 @@ public class Cleaner {
         if(!directions.isEmpty()) {
             position.add(directions.get(0));
             directions.remove(0);
-            if(area.getOilPatchLocations().contains(position)) {
-                totalSpillsCleaned ++;
-            }
-
+            attemptToClean();
         }
     }
 
@@ -44,6 +41,20 @@ public class Cleaner {
 
     public int getTotalSpillsCleaned() {
         return totalSpillsCleaned;
+    }
+
+    private void attemptToClean() {
+        if(area.getOilPatchLocations().contains(position)) {
+            totalSpillsCleaned ++;
+        }
+        area = new Area(
+                area.getxLength(),
+                area.getyLength(),
+                area.getOilPatchLocations()
+                        .stream().
+                        filter(patch -> !patch.equals(position)).
+                        collect(Collectors.toList())
+        );
     }
 
 }
