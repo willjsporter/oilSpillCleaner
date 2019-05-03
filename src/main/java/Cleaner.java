@@ -21,7 +21,7 @@ public class Cleaner {
 
     public void nextMove() {
         if(!directions.isEmpty()) {
-            position.add(directions.get(0));
+            position.moveBy(directions.get(0));
             directions.remove(0);
             attemptToClean();
         }

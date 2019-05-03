@@ -9,11 +9,11 @@ import static org.hamcrest.Matchers.is;
 public class CoordinatesTest {
 
     @Test
-    public void shouldAddPairsByAddingXAndYCoordinatesTogetherRespectively() {
+    public void shouldMoveCoordinatesByAddingXAndYCoordinatesTogetherRespectively() {
         Coordinates coordinates1 = new Coordinates(1,0);
         Coordinates coordinates2 = new Coordinates(2,4);
 
-        coordinates1.add(coordinates2);
+        coordinates1.moveBy(coordinates2);
 
         assertThat(coordinates1, is(new Coordinates(3,4)));
     }

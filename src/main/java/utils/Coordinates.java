@@ -12,7 +12,7 @@ public class Coordinates {
         this.y = y;
     }
 
-    public void add(Coordinates otherCoordinates) {
+    public void moveBy(Coordinates otherCoordinates) {
         x += otherCoordinates.getX();
         y += otherCoordinates.getY();
     }
