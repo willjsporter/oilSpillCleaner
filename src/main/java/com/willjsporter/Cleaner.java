@@ -1,4 +1,6 @@
-import utils.Coordinates;
+package com.willjsporter;
+
+import com.willjsporter.utils.Coordinates;
 
 import java.util.ArrayList;
 import java.util.List;

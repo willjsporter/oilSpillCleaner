@@ -1,4 +1,4 @@
-package utils;
+package com.willjsporter.utils;
 
 import java.util.Objects;
 

@@ -1,4 +1,4 @@
-package utils;
+package com.willjsporter.utils;
 
 import org.junit.Test;
 
