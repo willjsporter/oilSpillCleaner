@@ -7,25 +7,19 @@ import java.util.List;
 import static com.willjsporter.utils.ListUtils.toCoordinates;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
 
 public class ListUtilsTest {
 
     @Test
-    public void shouldBeAbleToConvert2ItemListToCoordinates() throws Exception {
+    public void shouldBeAbleToConvert2ItemListToCoordinates() {
         var listToConvert = List.of(1,2);
-        assertThat(toCoordinates(listToConvert), equalTo(new Coordinates(1,2)));
+        assertThat(toCoordinates(listToConvert), equalTo(new Coordinates(1, 2)));
     }
 
     @Test
-    public void listofLengthMoreThan2ShouldThrowException() {
-        try {
-            toCoordinates(List.of(1,2,3));
-            fail();
-        } catch (Exception e) {
-            assertThat(e.getMessage(), is("list must be of length 2 but was of length 3"));
-        }
+    public void listofLengthOtherThan2ShouldDefaultToZeroZeroCoordinates() {
+        var invalidListToConvert = List.of(2,3,10,14);
+        assertThat(toCoordinates(invalidListToConvert), equalTo(new Coordinates(0, 0)));
     }
 
 }
