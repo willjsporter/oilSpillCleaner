@@ -22,6 +22,14 @@ public class Area {
         return xLength;
     }
 
+    public int getyLength() {
+        return yLength;
+    }
+
+    public List<Coordinates> getOilPatchLocations() {
+        return oilPatchLocations;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,14 +43,6 @@ public class Area {
     @Override
     public int hashCode() {
         return Objects.hash(getxLength(), getyLength(), getOilPatchLocations());
-    }
-
-    public int getyLength() {
-        return yLength;
-    }
-
-    public List<Coordinates> getOilPatchLocations() {
-        return oilPatchLocations;
     }
 
 }
