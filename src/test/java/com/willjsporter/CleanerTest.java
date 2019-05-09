@@ -1,8 +1,8 @@
-import com.willjsporter.Area;
-import com.willjsporter.Cleaner;
+package com.willjsporter;
+
+import com.willjsporter.utils.Coordinates;
 import org.junit.Before;
 import org.junit.Test;
-import com.willjsporter.utils.Coordinates;
 
 import java.util.ArrayList;
 import java.util.List;
