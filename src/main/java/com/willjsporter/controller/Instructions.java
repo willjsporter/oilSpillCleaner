@@ -1,8 +1,10 @@
 package com.willjsporter.controller;
 
 import com.willjsporter.Area;
+import com.willjsporter.Cleaner;
 import com.willjsporter.utils.Coordinates;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +29,10 @@ public class Instructions {
                 areaSize.get(1),
                 listOflistsToListOfOilPatchCoordinates()
         );
+    }
+
+    public Cleaner createCleaner() {
+        return new Cleaner(createArea(), listToCoordinates(startingPosition), new ArrayList<>());
     }
 
     public List<Integer> getAreaSize() {

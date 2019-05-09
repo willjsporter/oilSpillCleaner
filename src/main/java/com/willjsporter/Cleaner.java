@@ -4,6 +4,7 @@ import com.willjsporter.utils.Coordinates;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Cleaner {
@@ -69,4 +70,19 @@ public class Cleaner {
         );
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cleaner)) return false;
+        Cleaner cleaner = (Cleaner) o;
+        return getTotalSpillsCleaned() == cleaner.getTotalSpillsCleaned() &&
+                getArea().equals(cleaner.getArea()) &&
+                getPosition().equals(cleaner.getPosition()) &&
+                getDirections().equals(cleaner.getDirections());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getArea(), getPosition(), getDirections(), getTotalSpillsCleaned());
+    }
 }
