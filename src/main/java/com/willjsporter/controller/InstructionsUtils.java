@@ -1,10 +1,12 @@
-package com.willjsporter.utils;
+package com.willjsporter.controller;
+
+import com.willjsporter.utils.Coordinates;
 
 import java.util.List;
 
-public class ListUtils {
+class InstructionsUtils {
 
-    public static Coordinates toCoordinates(List<Integer> list) {
+    static Coordinates listToCoordinates(List<Integer> list) {
         if(list.size()!= 2) {
             return new Coordinates(0,0);
         }

@@ -6,7 +6,7 @@ import com.willjsporter.utils.Coordinates;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.willjsporter.utils.ListUtils.toCoordinates;
+import static com.willjsporter.controller.InstructionsUtils.listToCoordinates;
 
 public class Instructions {
     private List<Integer> areaSize;
@@ -48,7 +48,7 @@ public class Instructions {
     private List<Coordinates> listOflistsToListOfOilPatchCoordinates() {
         return oilPatches
                 .stream()
-                .map(innerList -> toCoordinates(innerList))
+                .map(innerList -> listToCoordinates(innerList))
                 .distinct()
                 .collect(Collectors.toList());
     }
