@@ -1,6 +1,12 @@
 package com.willjsporter.controller;
 
+import com.willjsporter.Area;
+import com.willjsporter.utils.Coordinates;
+
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.willjsporter.utils.ListUtils.toCoordinates;
 
 public class Instructions {
     private List<Integer> areaSize;
@@ -13,6 +19,14 @@ public class Instructions {
         this.startingPosition = startingPosition;
         this.oilPatches = oilPatches;
         this.navigationInstructions = navigationInstructions;
+    }
+
+    public Area createArea() {
+        return new Area(
+                areaSize.get(0),
+                areaSize.get(1),
+                listOflistsToListOfOilPatchCoordinates()
+        );
     }
 
     public List<Integer> getAreaSize() {
@@ -30,4 +44,13 @@ public class Instructions {
     public String getNavigationInstructions() {
         return navigationInstructions;
     }
+
+    private List<Coordinates> listOflistsToListOfOilPatchCoordinates() {
+        return oilPatches
+                .stream()
+                .map(innerList -> toCoordinates(innerList))
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
 }
