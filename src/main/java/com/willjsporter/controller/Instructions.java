@@ -6,15 +6,24 @@ import com.willjsporter.utils.Coordinates;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static com.willjsporter.controller.InstructionsUtils.listToCoordinates;
+import static java.util.Arrays.asList;
 
 public class Instructions {
     private List<Integer> areaSize;
     private List<Integer> startingPosition;
     private List<List<Integer>> oilPatches;
     private String navigationInstructions;
+
+    private final Map<String, Coordinates> directionTranslatorMap = Map.of(
+            "N", new Coordinates(0,1),
+            "E", new Coordinates(1,0),
+            "S", new Coordinates(0,-1),
+            "W", new Coordinates(-1,0)
+    );
 
     public Instructions(List<Integer> areaSize, List<Integer> startingPosition, List<List<Integer>> oilPatches, String navigationInstructions) {
         this.areaSize = areaSize;
@@ -32,7 +41,7 @@ public class Instructions {
     }
 
     public Cleaner createCleaner() {
-        return new Cleaner(createArea(), listToCoordinates(startingPosition), new ArrayList<>());
+        return new Cleaner(createArea(), listToCoordinates(startingPosition), instructionsToDirectionsConverter());
     }
 
     public List<Integer> getAreaSize() {
@@ -59,4 +68,12 @@ public class Instructions {
                 .collect(Collectors.toList());
     }
 
+    private ArrayList<Coordinates> instructionsToDirectionsConverter() {
+         List instructionsList = asList(navigationInstructions.split(""))
+                 .stream()
+                 .filter(entry -> !entry.equals(""))
+                 .map(letter -> directionTranslatorMap.get(letter))
+                 .collect(Collectors.toList());
+        return new ArrayList<Coordinates>(instructionsList);
+    }
 }
