@@ -42,7 +42,7 @@ public class CleanerControllerTest {
     }
 
     private String readFileAsString(String pathToFile) throws URISyntaxException, IOException {
-        //implementation from spring docs: https://www.baeldung.com/reading-file-in-java
+        //implementation from spring docs: https://www.baeldung.com/reading-file-in-java#JDK7
 
         Path path = Paths.get(getClass().getClassLoader().getResource(pathToFile).toURI());
         byte[] fileBytes = Files.readAllBytes(path);
