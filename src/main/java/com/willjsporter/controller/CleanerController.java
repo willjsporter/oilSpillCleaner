@@ -16,7 +16,12 @@ public class CleanerController {
             value = "/sendInstructions",
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public CleanerReport sendAndActionCleaner(@RequestBody Instructions instructions) {
-        return new CleanerReport(new Coordinates(3,2), 2);
+    public CleanerReport sendAndActionCleaner(@RequestBody Instructions instructions) throws Exception {
+        Cleaner cleaner = instructions.createCleaner();
+        while (cleaner.getDirections().size() > 0) {
+            cleaner.nextMove();
+        }
+
+        return new CleanerReport(cleaner.getPosition(), cleaner.getTotalSpillsCleaned());
     }
 }
