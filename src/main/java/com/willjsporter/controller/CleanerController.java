@@ -1,6 +1,6 @@
 package com.willjsporter.controller;
 
-import com.willjsporter.Cleaner;
+import com.willjsporter.cleaner.Cleaner;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

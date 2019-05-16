@@ -1,7 +1,7 @@
 package com.willjsporter.controller;
 
-import com.willjsporter.Area;
-import com.willjsporter.Cleaner;
+import com.willjsporter.cleaner.Area;
+import com.willjsporter.cleaner.Cleaner;
 import com.willjsporter.utils.Coordinates;
 import org.junit.Before;
 import org.junit.Test;
