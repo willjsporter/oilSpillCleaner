@@ -1,7 +1,7 @@
 # Oil Spill Cleaner
 
 ## What am I?
-This is a project to program a simple robot that, given an area and a starting point within that area can navigate to specified positions in order to clean up oil spills.
+This is a project to program a simple robot that, given an area and a starting point within that area, can navigate to specified positions in order to clean up oil spills.
 
 The user specifies input by sending data as JSON to an endpoint from where the instructions can be processed.
 
@@ -11,14 +11,28 @@ The project is only to deal with the navigation side rather than the cleaning si
 
 ## How to run me
 
-To use the cleaner it is necessary to run this application by inputting 
+Maven is required to build and run this project. Installation instructions can be found at `https://maven.apache.org/install.html`.
+
+Once maven is installed, to install all external libraries and dependencies, and to build the project after getting the source code, run `mvn install` in the terminal.
+
+To use the cleaner, type 
 `mvn spring-boot:run` 
 into the terminal from the home directory of the project.
 
-To send instructions, these should be sent via an HTTP POST request with the instructions (in JSON) as the request body.
-This can be done via curl or via an application like Postman.
+##How to send instructions to the cleaner
 
-An example of how the instructions passed in the JSON body might look is as follows:
+To send instructions to the cleaner, these should be sent via an HTTP POST request with the instructions (in JSON) as the request body to the `/sendInstructions` end point.
+This can be done via curl or via an application like Postman. It is necessary to specify that the content type of the post body is JSON.
+
+If using curl, an example of how to send instructions is below:
+
+```
+curl -X POST -H "Content-Type: application/json" -d @path/to/instructions.json http://localhost:8080/sendInstructions
+```
+
+This assumes that the request is being made to a local server; replace the `http://localhost:8080` with the appropriate base url when the application has been deployed.
+
+For the instructions file that will be sent in the request, it is necessary to structure the instructions correctly as JSON. An example of how the instructions passed in the JSON body might look is as follows:
 
 ```
 {
@@ -44,7 +58,10 @@ The output for this example would be as follows:
 
 ## How to run the tests
 
-//:TODO
+The tests can be run through maven by inputting the command 
+```
+mvn clean test
+```
 
 ## User Stories
 
@@ -59,5 +76,3 @@ The user requirements detailed when asked to build this program for the cleaner 
 4. As a user, I would like to see the number of oil spills cleaned up so I can see that my machine has been effective and have visibility over the quantity of oil that remains.
 
 5. As a user, I would like to see a useful error if the cleaner goes out of bounds so I can learn from my mistakes and resend the instructions with more useful input.
-
-6. As a user I want a clear error message if I put in the wrong input data so that I know what I need to amend.
