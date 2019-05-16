@@ -20,8 +20,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.fail;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -33,6 +32,17 @@ public class CleanerControllerTest {
 
     @Autowired
     ObjectMapper objectMapper;
+
+    @Test
+    public void ifNoDirectionscontrollerShouldSendBackStartingPositionAndNoSpillsCleaned () throws Exception {
+        String instructionsString = readFileAsString("trivial_test_data.json");
+
+        this.mockMvc.perform(post("/sendInstructions").contentType(MediaType.APPLICATION_JSON_UTF8).content(instructionsString))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.oilPatchesCleaned").value(0))
+                .andExpect(jsonPath("$.finalPosition.x").value(1))
+                .andExpect(jsonPath("$.finalPosition.y").value(1));
+    }
 
     @Test
     public void controllerShouldProcessInstructionsAndSendBackFinalPositionAndNumberCleaned () throws Exception {
