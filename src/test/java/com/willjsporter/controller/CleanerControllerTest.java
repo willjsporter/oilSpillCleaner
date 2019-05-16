@@ -16,8 +16,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.fail;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -39,6 +43,22 @@ public class CleanerControllerTest {
                 .andExpect(jsonPath("$.oilPatchesCleaned").value(2))
                 .andExpect(jsonPath("$.finalPosition.x").value(3))
                 .andExpect(jsonPath("$.finalPosition.y").value(2));
+    }
+
+    @Test
+    public void controllerShouldReturnErrorWhenInstructionsCauseCleanerToGoOutOfBounds () throws Exception {
+        String instructionsString = readFileAsString("error_test_data.json");
+
+        try {
+            this.mockMvc.perform(
+                    post("/sendInstructions")
+                            .contentType(MediaType.APPLICATION_JSON_UTF8)
+                            .content(instructionsString)
+            );
+            fail("Expected exception: \"cleaner is out of bounds at position (-1,1)\" but no exception thrown");
+        } catch (Exception e) {
+            assertThat(e.getCause().getMessage(), is("cleaner is out of bounds at position (-1,1)"));
+        }
     }
 
     private String readFileAsString(String pathToFile) throws URISyntaxException, IOException {
